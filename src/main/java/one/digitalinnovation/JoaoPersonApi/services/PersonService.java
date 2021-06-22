@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
 import one.digitalinnovation.JoaoPersonApi.dto.mappers.PersonMapper;
 import one.digitalinnovation.JoaoPersonApi.dto.request.PersonDTO;
 import one.digitalinnovation.JoaoPersonApi.dto.response.MessageResponseDTO;
@@ -14,15 +15,11 @@ import one.digitalinnovation.JoaoPersonApi.exceptions.NotFoundException;
 import one.digitalinnovation.JoaoPersonApi.repositories.PersonRepository;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonService {
     private PersonRepository personRepository;
 
     private final PersonMapper personMapper = PersonMapper.INSTANCE;
-
-    @Autowired
-    public PersonService(PersonRepository personRepository){
-        this.personRepository = personRepository;
-    }
 
     public MessageResponseDTO create(PersonDTO personDTO) {
         Person person = personMapper.toModel(personDTO);
