@@ -70,10 +70,6 @@ Template project in Java 11 for learning purposes. This project uses the followi
 * [**H2**](https://h2database.com/html/main.html)
 * [**Mapstruct**](https://mapstruct.org/)
 
-I also intend to use in upcoming versions:
-
-* [**Spring Security**](https://mvnrepository.com/artifact/org.springframework.security/spring-security-core) 
-
 ## Getting Started
 
 If you have Maven installed, run ***mvn spring-boot:run*** in the command line:
