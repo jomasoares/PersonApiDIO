@@ -1,5 +1,7 @@
 package one.digitalinnovation.JoaoPersonApi.dto.mappers;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -16,4 +18,6 @@ public interface PersonMapper {
     Person toModel(PersonDTO dto);
 
     PersonDTO toDTO(Person model);
+
+    List<PersonDTO> toPersonsDTOs(List<Person> people);
 }
