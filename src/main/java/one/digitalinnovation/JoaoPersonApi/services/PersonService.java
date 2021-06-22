@@ -1,7 +1,7 @@
 package one.digitalinnovation.JoaoPersonApi.services;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,9 +29,7 @@ public class PersonService {
 
     public List<PersonDTO> listAll() {
         List<Person> people = personRepository.findAll();
-        return people.stream()
-            .map(personMapper::toDTO)
-            .collect(Collectors.toList());
+        return personMapper.toPersonsDTOs(people);
     }
 
     public PersonDTO findById(Long id) throws NotFoundException {
@@ -43,8 +41,7 @@ public class PersonService {
     public void deleteById(Long id) throws NotFoundException {
         verifyIfExists(id);
 
-        personRepository.deleteById(id);
-        
+        personRepository.deleteById(id);   
     }
 
     public MessageResponseDTO update(Long id, PersonDTO personDTO) throws NotFoundException {
@@ -54,6 +51,31 @@ public class PersonService {
         Person savedPerson = personRepository.save(updatedPerson);
 
         return createMessageResponse("Person successfully updated with ID ", savedPerson.getId());
+    }
+
+    public List<PersonDTO> findByFirstName(String name) {
+        List<Person> people = personRepository.findByFirstNameContainingIgnoreCase(name);
+        return personMapper.toPersonsDTOs(people);
+    }
+
+    public List<PersonDTO> findByCpf(String name) {
+        List<Person> people = personRepository.findByCpf(name);
+        return personMapper.toPersonsDTOs(people);
+    }
+
+    public List<PersonDTO> findByBirthDate(LocalDate date) {
+        List<Person> people = personRepository.findByBirthDate(date);
+        return personMapper.toPersonsDTOs(people);
+    }
+
+    public List<PersonDTO> findByBirthDateBefore(LocalDate date) {
+        List<Person> people = personRepository.findByBirthDateLessThan(date);
+        return personMapper.toPersonsDTOs(people);
+    }
+
+    public List<PersonDTO> findByBirthDateAfter(LocalDate date) {
+        List<Person> people = personRepository.findByBirthDateGreaterThan(date);
+        return personMapper.toPersonsDTOs(people);
     }
 
     private Person verifyIfExists(Long id) throws NotFoundException {

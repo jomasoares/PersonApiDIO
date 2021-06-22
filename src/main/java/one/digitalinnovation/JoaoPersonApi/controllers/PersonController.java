@@ -1,6 +1,9 @@
 package one.digitalinnovation.JoaoPersonApi.controllers;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 import javax.validation.Valid;
 
@@ -37,7 +40,6 @@ public class PersonController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public MessageResponseDTO createPerson(@RequestBody  @Valid PersonDTO personDTO){
-        // System.out.println("olaaaaaaaaaaa MUNDOOOOOOO!");
         return personService.create(personDTO);
     }
 
@@ -57,5 +59,40 @@ public class PersonController {
         return personService.update(id, personDTO);
     }
 
+    @GetMapping("/firstName/{name}")
+    public List<PersonDTO> findByFirstName(@PathVariable String name) {
+        return personService.findByFirstName(name);
+    }
 
+    @GetMapping("/cpf/{cpf}")
+    public List<PersonDTO> findByCpf(@PathVariable String cpf) {
+        return personService.findByCpf(cpf);
+    }
+
+    @GetMapping("/birthDate/before/{dateString}")
+    public List<PersonDTO> findByBirthDateBefore(@PathVariable String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        formatter = formatter.withLocale( Locale.getDefault() );
+        LocalDate date = LocalDate.parse(dateString, formatter);
+
+        return personService.findByBirthDateBefore(date);
+    }
+
+    @GetMapping("/birthDate/after/{dateString}")
+    public List<PersonDTO> findByBirthDateAfter(@PathVariable String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        formatter = formatter.withLocale( Locale.getDefault() );
+        LocalDate date = LocalDate.parse(dateString, formatter);
+
+        return personService.findByBirthDateAfter(date);
+    }
+
+    @GetMapping("/birthDate/{dateString}")
+    public List<PersonDTO> findByBirthDate(@PathVariable String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        formatter = formatter.withLocale( Locale.getDefault() );
+        LocalDate date = LocalDate.parse(dateString, formatter);
+
+        return personService.findByBirthDate(date);
+    }
 }
