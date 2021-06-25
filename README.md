@@ -51,7 +51,7 @@ As seguintes modificações foram feitas em relação ao projeto original:
 | :-----------: |------------------------------------- |  --------------------------------------------------------------------------------------- |
 | GET           | api/v1/person/firstName/{lastName}   | Retorna todos os registros de pessoas cujo primeiro nome contém o argumento passado      |
 | GET           | api/v1/person/lastName/{firstName}   | Retorna todos os registros de pessoas cujo último nome contém o argumento passado        |
-| GET           | api/v1/person/cpf/{cpf}              | Retorna todos os registros de pessoas cujo cpf é igual ao argumento passado              |
+| GET           | api/v1/person/cpf/{cpf}              | Retorna o registro da pessoa cujo cpf é igual ao argumento passado                       |
 | GET           | api/v1/person/birthDate/before/{date}| Retorna todos os registros de pessoas que nasceram antes da data passada como parâmetro  |
 | GET           | api/v1/person/birthDate/after/{date} | Retorna todos os registros de pessoas que nasceram depois da data passada como parâmetro |
 | GET           | api/v1/person/birthDate/{date}       | Retorna todos os registros de pessoas que nasceram na data passada como parâmetro        |
@@ -102,7 +102,7 @@ The following modifications were added to the origianl project:
 | :-----------: |------------------------------------- |  ---------------------------------------------------------------------------------|
 | GET           | api/v1/person/firstName/{lastName}   | Return all person entries whose first name contains the endpoint parameter        |
 | GET           | api/v1/person/lastName/{firstName}   | Return all person entries whose last name contains the endpoint parameter         |
-| GET           | api/v1/person/cpf/{cpf}              | Return all person entries whose cpf is the same as the endpoint parameter         |
+| GET           | api/v1/person/cpf/{cpf}              | Return a person entry whose cpf is the same as the endpoint parameter             |
 | GET           | api/v1/person/birthDate/before/{date}| Return all entries of people born before the the date passed as endpoint parameter|
 | GET           | api/v1/person/birthDate/after/{date} | Return all entries of people born after the date passed as endpoint parameter     |
 | GET           | api/v1/person/birthDate/{date}       | Return all entries of people born in the date passed as endpoint parameter        |
